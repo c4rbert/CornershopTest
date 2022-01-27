@@ -28,7 +28,9 @@
 —Willie Nelson</string>
     <string name="search_counters">Search Counters</string>
     <string name="add_counters">Add counters</string>
+    <string name="one_item">%d item</string>
     <string name="n_items">%d items</string>
+    <string name="one_time">%d time</string>
     <string name="n_times">%d times</string>
     <string name="n_selected">%d selected</string>
     <string name="error_load_counters_title">Couldn’t load the counters</string>

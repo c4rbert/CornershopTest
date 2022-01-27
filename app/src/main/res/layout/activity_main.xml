@@ -14,42 +14,30 @@
         app:queryHint="@string/search_counters" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_counter"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/item_times_counter"
+        layout="@layout/item_times_counter"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_normal_1"
-        android:text="@string/n_items"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/times_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_normal_1"
-        android:layout_marginTop="@dimen/margin_normal_1"
-        android:text="@string/n_items"
-        android:textColor="@color/gray"
-        app:layout_constraintStart_toEndOf="@+id/item_counter"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/search_bar" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/gray"
-        app:layout_constraintTop_toBottomOf="@+id/item_counter"
-        app:layout_constraintBottom_toTopOf="@+id/add_counters">
+        app:layout_constraintBottom_toTopOf="@+id/add_counters"
+        app:layout_constraintTop_toBottomOf="@+id/item_times_counter">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/counters_recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_counter" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include
-        android:id="@+id/no_counters_container"
+        android:id="@+id/no_counters"
         layout="@layout/layout_no_counters"
         android:visibility="gone" />
 
@@ -59,6 +47,7 @@
         android:visibility="gone" />
 
     <ProgressBar
+        android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/orange"

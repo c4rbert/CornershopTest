@@ -4,28 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/no_counters"
+        android:id="@+id/item_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_counters"
+        android:layout_marginTop="@dimen/margin_normal_1"
+        android:text="@string/n_items"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="0dp"
+        android:id="@+id/times_counter"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_normal_3"
+        android:layout_marginLeft="@dimen/margin_normal_1"
         android:layout_marginTop="@dimen/margin_normal_1"
-        android:layout_marginRight="@dimen/margin_normal_3"
-        android:text="@string/no_counters_phrase"
-        android:textAlignment="center"
+        android:text="@string/n_items"
         android:textColor="@color/gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/no_counters" />
+        app:layout_constraintStart_toEndOf="@+id/item_counter"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
