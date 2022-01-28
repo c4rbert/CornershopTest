@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/margin_normal_1"
+    tools:context=".presentation.main.fragments.CreateItemFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/close_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            app:layout_constraintBottom_toBottomOf="@+id/create_counter_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/create_counter_label" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/create_counter_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_normal_2"
+            android:layout_marginRight="@dimen/margin_normal_2"
+            android:text="@string/create_counter"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/progress_circular"
+            app:layout_constraintStart_toEndOf="@+id/close_action"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/save_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:textAllCaps="true"
+            android:textColor="@color/orange"
+            app:layout_constraintBottom_toBottomOf="@+id/create_counter_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/create_counter_label" />
+
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminateTint="@color/orange"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/create_counter_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/create_counter_label" />
+
+
+        <TextView
+            android:id="@+id/name_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small_1"
+            android:layout_marginTop="@dimen/margin_large_1"
+            android:layout_marginEnd="@dimen/margin_small_1"
+            android:text="@string/counter_name_label"
+            android:textColor="@color/orange"
+            app:layout_constraintTop_toBottomOf="@+id/create_counter_label" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/counter_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small_1"
+            android:layout_marginEnd="@dimen/margin_small_1"
+            android:backgroundTint="@color/orange"
+            android:hint="@string/counter_name_hint"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            app:layout_constraintTop_toBottomOf="@+id/name_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

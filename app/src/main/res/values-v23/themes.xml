@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Theme.CountersNormal" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/orange</item>
@@ -18,5 +19,4 @@
     <style name="Theme.CountersWelcome" parent="Theme.CountersNormal">
         <item name="android:windowBackground">@color/welcome_background</item>
     </style>
-
 </resources>

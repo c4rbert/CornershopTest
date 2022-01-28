@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/margin_normal_1"
-    android:paddingTop="@dimen/margin_normal_1">
+    android:paddingTop="@dimen/margin_normal_1"
+    android:paddingBottom="@dimen/margin_normal_1">
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -13,25 +13,27 @@
         android:layout_height="wrap_content"
         android:text="Cups of coffe"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toStartOf="@+id/ic_dec"
+        app:layout_constraintEnd_toStartOf="@+id/dec_action"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ic_dec"
+        android:id="@+id/dec_action"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginLeft="@dimen/margin_normal_1"
         android:layout_marginRight="@dimen/margin_normal_1"
-        android:src="@drawable/ic_plus"
+        android:src="@drawable/ic_minus"
+        app:layout_constraintBottom_toBottomOf="@+id/plus_action"
         app:layout_constraintEnd_toStartOf="@+id/total_counter"
         app:layout_constraintStart_toEndOf="@+id/counter_name"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/plus_action"
         app:tint="@color/orange" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/total_counter"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
+        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_normal_1"
         android:layout_marginRight="@dimen/margin_normal_1"

@@ -4,70 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.MainActivity">
+    tools:context=".presentation.main.MainActivity"
+    android:paddingLeft="@dimen/margin_normal_2"
+    android:paddingRight="@dimen/margin_normal_2">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_bar"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="@string/search_counters" />
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_main" />
 
-
-    <include
-        android:id="@+id/item_times_counter"
-        layout="@layout/item_times_counter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_counters"
-        app:layout_constraintTop_toBottomOf="@+id/item_times_counter">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/counters_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_counter" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <include
-        android:id="@+id/no_counters"
-        layout="@layout/layout_no_counters"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/could_not_load_counters_container"
-        layout="@layout/layout_could_not_load_counters"
-        android:visibility="gone" />
-
-    <ProgressBar
-        android:id="@+id/progress_circular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/add_counters"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_normal_1"
-        android:background="@drawable/shape_button_primary_action"
-        android:drawableLeft="@drawable/ic_plus"
-        android:drawablePadding="10dp"
-        android:padding="@dimen/margin_normal_1"
-        android:text="@string/add_counters"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
