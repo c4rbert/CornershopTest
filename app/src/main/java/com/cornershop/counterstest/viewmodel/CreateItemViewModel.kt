@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.cornershop.counterstest.core.Resource
 import com.cornershop.counterstest.data.model.insertcounter.CreateCounter
-import com.cornershop.counterstest.repository.creatcounter.CreateItemRepository
+import com.cornershop.counterstest.data.repositories.creatcounter.CreateItemRepository
 import kotlinx.coroutines.Dispatchers
 
 class CreateItemViewModel(private val repository: CreateItemRepository) : ViewModel() {

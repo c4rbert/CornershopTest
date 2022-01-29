@@ -2,8 +2,8 @@ package gentera.yastas.yas_app_client_gestion_ventas.viewmodel.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.cornershop.counterstest.repository.creatcounter.CreateItemRepository
-import com.cornershop.counterstest.repository.main.MainRepository
+import com.cornershop.counterstest.data.repositories.creatcounter.CreateItemRepository
+import com.cornershop.counterstest.data.repositories.main.MainRepository
 import com.cornershop.counterstest.viewmodel.CreateItemViewModel
 import com.cornershop.counterstest.viewmodel.MainViewModel
 

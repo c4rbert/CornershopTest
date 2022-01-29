@@ -1,20 +1,18 @@
 package com.cornershop.counterstest.presentation.main.adapter
 
-import android.app.Activity
 import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.cornershop.counterstest.R
-import com.cornershop.counterstest.data.model.counters.CountersItem
+import com.cornershop.counterstest.data.database.entities.CountersItemEntity
 import com.cornershop.counterstest.databinding.ItemCounterBinding
 import com.cornershop.counterstest.presentation.main.fragments.MainFragment
 
-class CountersAdapter(var context: MainFragment, var counteres: ArrayList<CountersItem>) :
+class CountersAdapter(var context: MainFragment, var counteres: ArrayList<CountersItemEntity>) :
     RecyclerView.Adapter<CountersAdapter.ViewHolder>() {
 
 

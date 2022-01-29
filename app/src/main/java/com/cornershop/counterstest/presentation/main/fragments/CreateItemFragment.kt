@@ -14,7 +14,7 @@ import com.cornershop.counterstest.data.model.insertcounter.CreateCounter
 import com.cornershop.counterstest.data.remote.CreateItemDataSource
 import com.cornershop.counterstest.databinding.CreateItemFragmentBinding
 import com.cornershop.counterstest.domain.api.CounterAPI
-import com.cornershop.counterstest.repository.creatcounter.CreateItemRepository
+import com.cornershop.counterstest.data.repositories.creatcounter.CreateItemRepository
 import com.cornershop.counterstest.util.rx.hideKeyBoard
 import com.cornershop.counterstest.util.rx.showView
 import com.cornershop.counterstest.viewmodel.CreateItemViewModel

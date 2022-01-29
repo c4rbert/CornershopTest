@@ -1,4 +1,4 @@
-package com.cornershop.counterstest.repository.creatcounter
+package com.cornershop.counterstest.data.repositories.creatcounter
 
 import com.cornershop.counterstest.data.model.counters.Counters
 import com.cornershop.counterstest.data.model.insertcounter.CreateCounter

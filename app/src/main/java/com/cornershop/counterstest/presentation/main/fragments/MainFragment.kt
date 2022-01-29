@@ -12,14 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cornershop.counterstest.R
 import com.cornershop.counterstest.core.Resource
+import com.cornershop.counterstest.data.database.entities.CountersItemEntity
 import com.cornershop.counterstest.data.model.counters.Counters
-import com.cornershop.counterstest.data.model.counters.CountersItem
 import com.cornershop.counterstest.data.model.inccounter.IdCounter
 import com.cornershop.counterstest.data.remote.MainDataSource
 import com.cornershop.counterstest.databinding.MainFragmentBinding
 import com.cornershop.counterstest.domain.api.CounterAPI
 import com.cornershop.counterstest.presentation.main.adapter.CountersAdapter
-import com.cornershop.counterstest.repository.main.MainRepository
+import com.cornershop.counterstest.data.repositories.main.MainRepository
 import com.cornershop.counterstest.viewmodel.MainViewModel
 import gentera.yastas.yas_app_client_gestion_ventas.api.client.Client
 import gentera.yastas.yas_app_client_gestion_ventas.viewmodel.factory.ViewModelFactory
@@ -33,7 +33,7 @@ class MainFragment : Fragment() {
     private val mainViewModel by viewModels<MainViewModel> {
         ViewModelFactory(
             MainRepository(
-                this,
+                requireContext(),
                 MainDataSource(
                     Client(requireContext()).getClient(CounterAPI::class.java) as CounterAPI
                 )
@@ -122,6 +122,8 @@ class MainFragment : Fragment() {
     }
 
     private fun setResultData(data: Counters) {
+        viewModel.deleteCounters()
+        viewModel.insertCounters(data)
         setRecyclerData(data)
         setTotalItems(data)
         setTotalTimes(data)
@@ -167,7 +169,7 @@ class MainFragment : Fragment() {
         // TODO: Use the ViewModel
     }
 
-    fun decCounter(countersItem: CountersItem) {
+    fun decCounter(countersItem: CountersItemEntity) {
 
         mainViewModel.decCounter(IdCounter(countersItem.id)).observe(viewLifecycleOwner, { result ->
             when (result) {
@@ -192,7 +194,7 @@ class MainFragment : Fragment() {
         })
     }
 
-    fun incCounter(countersItem: CountersItem) {
+    fun incCounter(countersItem: CountersItemEntity) {
         mainViewModel.incCounter(IdCounter(countersItem.id)).observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Resource.Loading -> {
