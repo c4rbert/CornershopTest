@@ -17,6 +17,8 @@ class MainRepository(
 
     suspend fun decCounter(idCounter: IdCounter): Counters = mainDataSource.decCounter(idCounter)
 
+    suspend fun deleteCounter(idCounter: IdCounter): Counters = mainDataSource.deleteCounter(idCounter)
+
     fun insertCounters(counters: Counters) {
         getDbInstance(context).counterDao().insertCounters(counters)
     }

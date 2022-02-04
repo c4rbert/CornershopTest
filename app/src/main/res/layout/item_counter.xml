@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/margin_normal_1"
+    android:id="@+id/counter_container"
     android:paddingBottom="@dimen/margin_normal_1">
 
 

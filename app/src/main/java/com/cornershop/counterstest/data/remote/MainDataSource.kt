@@ -11,4 +11,6 @@ class MainDataSource(private val counterAPI: CounterAPI) {
     suspend fun incCounter(idCounter: IdCounter): Counters = counterAPI.incCounter(idCounter)
 
     suspend fun decCounter(idCounter: IdCounter): Counters = counterAPI.decCounter(idCounter)
+
+    suspend fun deleteCounter(idCounter: IdCounter): Counters = counterAPI.deleteCounter(idCounter)
 }

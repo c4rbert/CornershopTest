@@ -4,6 +4,7 @@ import com.cornershop.counterstest.data.model.counters.Counters
 import com.cornershop.counterstest.data.model.inccounter.IdCounter
 import com.cornershop.counterstest.data.model.insertcounter.CreateCounter
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 
@@ -25,6 +26,12 @@ interface CounterAPI {
 
     @POST("/api/v1/counter/dec")
     suspend fun decCounter(
+        @Body idCounter: IdCounter,
+    ): Counters
+
+
+    @DELETE("/api/v1/counter")
+    suspend fun deleteCounter(
         @Body idCounter: IdCounter,
     ): Counters
 }

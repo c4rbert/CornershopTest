@@ -20,6 +20,8 @@ import com.cornershop.counterstest.databinding.MainFragmentBinding
 import com.cornershop.counterstest.domain.api.CounterAPI
 import com.cornershop.counterstest.presentation.main.adapter.CountersAdapter
 import com.cornershop.counterstest.data.repositories.main.MainRepository
+import com.cornershop.counterstest.presentation.main.adapter.CountersRemoveAdapter
+import com.cornershop.counterstest.util.rx.showView
 import com.cornershop.counterstest.viewmodel.MainViewModel
 import gentera.yastas.yas_app_client_gestion_ventas.api.client.Client
 import gentera.yastas.yas_app_client_gestion_ventas.viewmodel.factory.ViewModelFactory
@@ -29,6 +31,7 @@ class MainFragment : Fragment() {
     private val TAG: String = javaClass.simpleName
 
     private lateinit var binding: MainFragmentBinding
+    private var counters: Counters? = null
 
     private val mainViewModel by viewModels<MainViewModel> {
         ViewModelFactory(
@@ -42,6 +45,7 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var countersAdapter: CountersAdapter
+    private lateinit var countersRemoveAdapter: CountersRemoveAdapter
 
     companion object {
         fun newInstance() = MainFragment()
@@ -59,6 +63,7 @@ class MainFragment : Fragment() {
         getCounters()
         setRefreshSwipeListener()
         setAddCounterListener()
+        setCloseRemoveActionListener()
         return binding.root
     }
 
@@ -87,10 +92,11 @@ class MainFragment : Fragment() {
                     binding.swipeRefreshLayout.isRefreshing = false
                     binding.progressCircular.visibility = View.GONE
                     Log.d(TAG, "${result.data}")
-
+                    viewModel.deleteCounters()
                     if (result.data.size > 0) {
                         binding.itemTimesCounter.root.visibility = View.VISIBLE
-                        setResultData(result.data)
+                        counters = result.data
+                        setResultData(counters!!)
                     } else {
                         binding.noCounters.root.visibility = View.VISIBLE
                     }
@@ -122,7 +128,6 @@ class MainFragment : Fragment() {
     }
 
     private fun setResultData(data: Counters) {
-        viewModel.deleteCounters()
         viewModel.insertCounters(data)
         setRecyclerData(data)
         setTotalItems(data)
@@ -160,6 +165,13 @@ class MainFragment : Fragment() {
     private fun setAddCounterListener() {
         binding.addCounters.setOnClickListener {
             findNavController().navigate(R.id.createItemFragment)
+        }
+    }
+
+    private fun setCloseRemoveActionListener() {
+        binding.itemRemoveCounter.closeAction.setOnClickListener {
+            showMainUI(true)
+            getCounters()
         }
     }
 
@@ -216,5 +228,58 @@ class MainFragment : Fragment() {
                 }
             }
         })
+    }
+
+
+    fun deleteCounter(countersItem: CountersItemEntity) {
+        mainViewModel.deleteCounter(IdCounter(countersItem.id))
+            .observe(viewLifecycleOwner, { result ->
+                when (result) {
+                    is Resource.Loading -> {
+                        Log.i(TAG, "Incrementing Counter")
+                        initUI()
+                    }
+                    is Resource.Success -> {
+                        binding.swipeRefreshLayout.isRefreshing = false
+                        binding.progressCircular.visibility = View.GONE
+                        if (result.data.size > 0) {
+                            setResultData(result.data)
+                        } else {
+                            binding.noCounters.root.visibility = View.VISIBLE
+                        }
+                    }
+                    is Resource.Failure -> {
+                        showCouldNotLoadCounters()
+                        Log.e(TAG, result.exception.toString())
+                    }
+                }
+            })
+    }
+
+    private fun showMainUI(isVisible: Boolean) {
+        binding.apply {
+            showView(searchBar, isVisible)
+            showView(addCounters, isVisible)
+            showView(itemRemoveCounter.root, !isVisible)
+        }
+    }
+
+    fun setRemovableItemStatus(adapterPosition: Int, isRemovable: Boolean) {
+        showMainUI(false)
+        counters!![adapterPosition].removable = isRemovable
+        setRemovableAdapterValues()
+        setTotalRemovableCounters()
+    }
+
+    fun setTotalRemovableCounters() {
+        val totalRemovables = counters?.count { it.removable }
+        binding.itemRemoveCounter.totalSelected.text =
+            String.format(getString(R.string.n_selected), totalRemovables)
+    }
+
+    fun setRemovableAdapterValues() {
+        countersRemoveAdapter = CountersRemoveAdapter(this, counters!!)
+        binding.countersRecyclerView.adapter = countersRemoveAdapter
+        countersAdapter.notifyDataSetChanged()
     }
 }

@@ -23,13 +23,13 @@ android {
             initWith debug
             debuggable = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"http://192.168.100.22:3000\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.100.30:3000\""
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL", "\"http://192.168.100.22:3000\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.100.30:3000\""
         }
     }
     compileOptions {
@@ -87,4 +87,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
 }

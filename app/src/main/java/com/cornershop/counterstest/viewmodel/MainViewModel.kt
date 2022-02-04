@@ -37,6 +37,15 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
         }
     }
 
+    fun deleteCounter(idCounter: IdCounter) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(Resource.Success(repository.deleteCounter(idCounter)))
+        } catch (e: Exception) {
+            emit(Resource.Failure(e))
+        }
+    }
+
     fun insertCounters(counters: Counters){
         repository.insertCounters(counters)
     }

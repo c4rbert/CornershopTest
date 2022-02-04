@@ -14,5 +14,5 @@ data class CountersItemEntity(
     val id: String,
     val count: Int,
     val title: String,
-    val isDelete: Boolean = false,
+    var removable: Boolean = false,
 )

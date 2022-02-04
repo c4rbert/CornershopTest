@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 class NetworkModule private constructor(){
 
     companion object{
-        const val TIMEOUT:Long = 90
+        const val TIMEOUT:Long = 30
         fun provideRetrofitClient(context:Context):Retrofit{
             return Retrofit.Builder()
                     .client(provideHttpClient(context))
