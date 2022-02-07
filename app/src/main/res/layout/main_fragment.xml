@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/search_bar"
+                android:id="@+id/main_search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,6 +59,11 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <include
+            android:id="@+id/no_results"
+            layout="@layout/layout_no_result"
+            android:visibility="gone" />
+
+        <include
             android:id="@+id/no_counters"
             layout="@layout/layout_no_counters"
             android:visibility="gone" />
@@ -69,14 +74,26 @@
             android:visibility="gone" />
 
         <ProgressBar
-            android:id="@+id/progress_circular"
+            android:id="@+id/main_progress_circular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/orange"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/deleting"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actions_container"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/deleting" />
 
         <Button
             android:id="@+id/add_counters"

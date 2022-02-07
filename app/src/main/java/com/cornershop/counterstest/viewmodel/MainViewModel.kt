@@ -3,6 +3,7 @@ package com.cornershop.counterstest.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.cornershop.counterstest.core.Resource
+import com.cornershop.counterstest.data.database.entities.CountersItemEntity
 import com.cornershop.counterstest.data.model.counters.Counters
 import com.cornershop.counterstest.data.model.inccounter.IdCounter
 import com.cornershop.counterstest.data.repositories.main.MainRepository
@@ -18,6 +19,8 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
             emit(Resource.Failure(e))
         }
     }
+
+    fun getSavedCounters() = repository.getSavedCounters()
 
     fun incCounter(idCounter: IdCounter) = liveData(Dispatchers.IO) {
         emit(Resource.Loading())
@@ -46,11 +49,15 @@ class MainViewModel(private val repository: MainRepository) : ViewModel() {
         }
     }
 
-    fun insertCounters(counters: Counters){
+    fun insertCounters(counters: ArrayList<CountersItemEntity>) {
         repository.insertCounters(counters)
     }
 
-    fun deleteCounters(){
+    fun deleteCounters() {
         repository.deleteCounters()
+    }
+
+    fun deleteSelectedCounters(selectedCounters: List<String>) {
+        repository.deleteSelectedCounters(selectedCounters)
     }
 }

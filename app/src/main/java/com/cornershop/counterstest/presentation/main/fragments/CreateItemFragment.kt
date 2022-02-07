@@ -15,6 +15,7 @@ import com.cornershop.counterstest.data.remote.CreateItemDataSource
 import com.cornershop.counterstest.databinding.CreateItemFragmentBinding
 import com.cornershop.counterstest.domain.api.CounterAPI
 import com.cornershop.counterstest.data.repositories.creatcounter.CreateItemRepository
+import com.cornershop.counterstest.presentation.dialogs.ErrorDialog
 import com.cornershop.counterstest.util.rx.hideKeyBoard
 import com.cornershop.counterstest.util.rx.showView
 import com.cornershop.counterstest.viewmodel.CreateItemViewModel
@@ -58,7 +59,11 @@ class CreateItemFragment : Fragment() {
     }
 
     private fun setCloseListener() {
-        binding.closeAction.setOnClickListener { findNavController().navigate(R.id.mainFragment) }
+        binding.closeAction.setOnClickListener {
+            if (!findNavController().popBackStack()) {
+                findNavController().popBackStack()
+            }
+        }
     }
 
     private fun setSaveCounterListener() {
@@ -80,9 +85,11 @@ class CreateItemFragment : Fragment() {
 
     private fun showSnackbar() {
         Snackbar
-            .make(binding.root,
+            .make(
+                binding.root,
                 R.string.create_counter_disclaimer,
-                Snackbar.LENGTH_SHORT).addCallback(object :
+                Snackbar.LENGTH_SHORT
+            ).addCallback(object :
                 BaseTransientBottomBar.BaseCallback<Snackbar>() {
                 override fun onShown(transientBottomBar: Snackbar?) {
                     super.onShown(transientBottomBar)
@@ -112,7 +119,8 @@ class CreateItemFragment : Fragment() {
                     }
 
                     is Resource.Failure -> {
-                        Log.e(TAG, result.exception.toString())
+                        showCouldNotCreateCounter()
+                        showSaveAction(true)
                     }
                 }
             })
@@ -124,6 +132,12 @@ class CreateItemFragment : Fragment() {
             showView(progressCircular, !status)
             showView(saveAction, status)
         }
+    }
+
+    private fun showCouldNotCreateCounter() {
+        val title = getString(R.string.error_creating_counter_title)
+        val errorDialog = ErrorDialog.newInstance(null, title, ErrorDialog.DISMISS)
+        activity?.supportFragmentManager?.let { errorDialog!!.show(it, errorDialog!!.tag) }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

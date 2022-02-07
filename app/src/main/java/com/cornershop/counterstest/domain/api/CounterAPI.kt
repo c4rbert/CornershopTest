@@ -3,10 +3,8 @@ package com.cornershop.counterstest.domain.api
 import com.cornershop.counterstest.data.model.counters.Counters
 import com.cornershop.counterstest.data.model.inccounter.IdCounter
 import com.cornershop.counterstest.data.model.insertcounter.CreateCounter
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.GET
-import retrofit2.http.POST
+import okhttp3.internal.http.hasBody
+import retrofit2.http.*
 
 interface CounterAPI {
 
@@ -30,7 +28,7 @@ interface CounterAPI {
     ): Counters
 
 
-    @DELETE("/api/v1/counter")
+    @HTTP(method = "DELETE", path ="/api/v1/counter", hasBody = true)
     suspend fun deleteCounter(
         @Body idCounter: IdCounter,
     ): Counters

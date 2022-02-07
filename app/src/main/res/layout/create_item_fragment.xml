@@ -19,18 +19,28 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/margin_normal_1"
             android:paddingTop="@dimen/margin_normal_1">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/close_action"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="@dimen/margin_normal_1"
-                android:src="@drawable/ic_close"
+                android:layout_marginRight="@dimen/margin_normal_1"
                 app:layout_constraintBottom_toBottomOf="@+id/create_counter_label"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/create_counter_label" />
+                app:layout_constraintTop_toTopOf="@+id/create_counter_label">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_normal_1"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/create_counter_label"
@@ -46,17 +56,27 @@
                 app:layout_constraintStart_toEndOf="@+id/close_action"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/save_action"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginRight="@dimen/margin_normal_1"
-                android:text="@string/save"
-                android:textAllCaps="true"
-                android:textColor="@color/orange"
                 app:layout_constraintBottom_toBottomOf="@+id/create_counter_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/create_counter_label" />
+                app:layout_constraintTop_toTopOf="@+id/create_counter_label">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    android:textAllCaps="true"
+                    android:textColor="@color/orange"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <ProgressBar
                 android:id="@+id/progress_circular"

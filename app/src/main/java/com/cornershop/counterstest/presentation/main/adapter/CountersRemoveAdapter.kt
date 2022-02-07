@@ -7,11 +7,12 @@ import com.cornershop.counterstest.data.database.entities.CountersItemEntity
 import com.cornershop.counterstest.databinding.ItemRemovableCounterBinding
 import com.cornershop.counterstest.databinding.ItemRemoveCounterBinding
 import com.cornershop.counterstest.databinding.ItemTenuredCounterBinding
+import com.cornershop.counterstest.presentation.callbacks.CountersListener
 import com.cornershop.counterstest.presentation.main.fragments.MainFragment
 import com.cornershop.counterstest.presentation.main.viewholder.CounterRemovableViewHolder
 import com.cornershop.counterstest.presentation.main.viewholder.CounterTenuredViewHolder
 
-class CountersRemoveAdapter(var context: MainFragment, var counters: ArrayList<CountersItemEntity>) :
+class CountersRemoveAdapter(var countersListener: CountersListener, var counters: ArrayList<CountersItemEntity>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -54,11 +55,11 @@ class CountersRemoveAdapter(var context: MainFragment, var counters: ArrayList<C
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is CounterRemovableViewHolder -> {
-                holder.bindData(context, counters[position])
+                holder.bindData(countersListener, counters[position])
             }
 
             is CounterTenuredViewHolder -> {
-                holder.bindData(context, counters[position])
+                holder.bindData(countersListener, counters[position])
             }
         }
     }
