@@ -15,6 +15,7 @@ import com.cornershop.counterstest.data.remote.CreateItemDataSource
 import com.cornershop.counterstest.databinding.CreateItemFragmentBinding
 import com.cornershop.counterstest.domain.api.CounterAPI
 import com.cornershop.counterstest.data.repositories.creatcounter.CreateItemRepository
+import com.cornershop.counterstest.presentation.base.BaseFragment
 import com.cornershop.counterstest.presentation.dialogs.ErrorDialog
 import com.cornershop.counterstest.util.rx.hideKeyBoard
 import com.cornershop.counterstest.util.rx.showView
@@ -24,7 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import gentera.yastas.yas_app_client_gestion_ventas.api.client.Client
 import gentera.yastas.yas_app_client_gestion_ventas.viewmodel.factory.ViewModelFactory
 
-class CreateItemFragment : Fragment() {
+class CreateItemFragment : BaseFragment() {
 
     private val TAG: String = javaClass.simpleName
 

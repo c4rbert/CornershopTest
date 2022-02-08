@@ -23,6 +23,7 @@ import com.cornershop.counterstest.domain.api.CounterAPI
 import com.cornershop.counterstest.presentation.main.adapter.CountersAdapter
 import com.cornershop.counterstest.data.repositories.main.MainRepository
 import com.cornershop.counterstest.domain.worker.DeleteWorker
+import com.cornershop.counterstest.presentation.base.BaseFragment
 import com.cornershop.counterstest.presentation.callbacks.CountersDialogListener
 import com.cornershop.counterstest.presentation.callbacks.CountersListener
 import com.cornershop.counterstest.presentation.dialogs.ActionDialog
@@ -38,7 +39,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 
-class MainFragment : Fragment(), CountersListener, CountersDialogListener {
+class MainFragment : BaseFragment(), CountersListener, CountersDialogListener {
 
     private val TAG: String = javaClass.simpleName
 
@@ -321,11 +322,6 @@ class MainFragment : Fragment(), CountersListener, CountersDialogListener {
     private fun showCouldNotUpdateCounter(title: String) {
         val errorDialog = ErrorDialog.newInstance(null, title, ErrorDialog.DISMISS)
         activity?.supportFragmentManager?.let { errorDialog!!.show(it, errorDialog!!.tag) }
-    }
-
-    fun serializeToJson(countersToDelete: ArrayList<CountersItemEntity>): String? {
-        val gson = Gson()
-        return gson.toJson(countersToDelete)
     }
 
     private fun initDeleteCounters(countersToDelete: ArrayList<CountersItemEntity>) {

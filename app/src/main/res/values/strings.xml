@@ -56,4 +56,6 @@
     <string name="delete_x_question">Delete "%s"?</string>
     <string name="delete_many_counters_question">Delete selected counters?</string>
     <string name="n_per_counter_name">%d × %s</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="online_again">Online again</string>
 </resources>
